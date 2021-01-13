@@ -16,6 +16,7 @@ public class ConsultaBoletoReturn {
     private Boolean type;
     private PaymentBill paymentBill;
     private List<PaymentBill> paymentBills;
+    private String message;
 
     public ConsultaBoletoReturn() {
     }
@@ -42,6 +43,14 @@ public class ConsultaBoletoReturn {
 
     public void setPaymentBills(List<PaymentBill> paymentBills) {
         this.paymentBills = paymentBills;
+    }
+
+    public String getMessage() {
+        return message;
+    }
+
+    public void setMessage(String message) {
+        this.message = message;
     }
 
 }

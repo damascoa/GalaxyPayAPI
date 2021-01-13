@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package com.galaxypayapi.model.returns;
+package com.galaxypayapi.model;
 
 import java.util.List;
 
@@ -21,6 +21,7 @@ public class PaymentBill {
     private String status;
     private String statusDescription;
     private String additionalInfo;
+    private String link;
     private String urlCarne;
     private String infoBoleto;
     private String value;
@@ -29,10 +30,7 @@ public class PaymentBill {
     private String customerName;
     private String operator;
     private String operatorName;
-    private List<Transaction> transactions;
-
-    public PaymentBill() {
-    }
+    private List<Transactions> transactions;
 
     public String getInternalId() {
         return internalId;
@@ -96,6 +94,14 @@ public class PaymentBill {
 
     public void setAdditionalInfo(String additionalInfo) {
         this.additionalInfo = additionalInfo;
+    }
+
+    public String getLink() {
+        return link;
+    }
+
+    public void setLink(String link) {
+        this.link = link;
     }
 
     public String getUrlCarne() {
@@ -162,11 +168,11 @@ public class PaymentBill {
         this.operatorName = operatorName;
     }
 
-    public List<Transaction> getTransactions() {
+    public List<Transactions> getTransactions() {
         return transactions;
     }
 
-    public void setTransactions(List<Transaction> transactions) {
+    public void setTransactions(List<Transactions> transactions) {
         this.transactions = transactions;
     }
 

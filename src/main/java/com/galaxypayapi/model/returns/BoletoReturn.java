@@ -5,6 +5,8 @@
  */
 package com.galaxypayapi.model.returns;
 
+import java.util.List;
+
 /**
  *
  * @author Renato
@@ -14,6 +16,7 @@ public class BoletoReturn {
     private String type;
     private String paymentBillInternalId;
     private String message;
+    private List<PaymentBill> paymentBill;
 
     public BoletoReturn() {
 
@@ -41,6 +44,14 @@ public class BoletoReturn {
 
     public void setMessage(String message) {
         this.message = message;
+    }
+
+    public List<PaymentBill> getPaymentBill() {
+        return paymentBill;
+    }
+
+    public void setPaymentBill(List<PaymentBill> paymentBill) {
+        this.paymentBill = paymentBill;
     }
 
 }

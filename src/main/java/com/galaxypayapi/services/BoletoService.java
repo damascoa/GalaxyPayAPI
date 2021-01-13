@@ -21,21 +21,27 @@ public class BoletoService {
 
     public BoletoReturn createPaymentBillBoletoAndCustomer(DataSend boleto) {
         System.out.println(Constantes.apiURL + "createPaymentBillBoletoAndCustomer");
-        System.out.println(new Gson().toJson(boleto));
-        BoletoReturn bolRet = Unirest.post(Constantes.apiURL + "createPaymentBillBoletoAndCustomer")
-                .body(boleto)
-                .asObject(BoletoReturn.class).getBody();
-        System.out.println(new Gson().toJson(bolRet));
-        return bolRet;
+//        System.out. println(new Gson().toJson(boleto));
+        String bolRet = Unirest.post(Constantes.apiURL + "createPaymentBillBoletoAndCustomer")
+                .body(boleto).asString().getBody();
+//        System.out.println("///////////////////////////////////////////////");
+//        System.out.println(bolRet);
+//        System.out.println("///////////////////////////////////////////////");
+        BoletoReturn saida = new Gson().fromJson(bolRet, BoletoReturn.class);
+//        System.out.println(new Gson().toJson(saida));
+        return saida;
     }
 
     public ConsultaBoletoReturn getPaymentBillInfo(DataSend boleto) {
         System.out.println(new Gson().toJson(boleto));
-        ConsultaBoletoReturn retorno = Unirest.post(Constantes.apiURL + "getPaymentBillInfo")
-                .body(boleto)
-                .asObject(ConsultaBoletoReturn.class).getBody();
-
-        System.out.println(new Gson().toJson(retorno));
+        String resp = Unirest.post(Constantes.apiURL + "getPaymentBillInfo")
+                .body(boleto).asString().getBody();
+//                .asObject(ConsultaBoletoReturn.class).getBody();
+        System.out.println("///////////////////////////////////////////////");
+        System.out.println(resp);
+        System.out.println("///////////////////////////////////////////////");
+        ConsultaBoletoReturn retorno = new Gson().fromJson(resp, ConsultaBoletoReturn.class);
+//        System.out.println(new Gson().toJson(retorno));
         return retorno;
     }
 
@@ -44,7 +50,19 @@ public class BoletoService {
         String jsonRetorno = Unirest.post(Constantes.apiURL + "getPaymentBillsByCustomer")
                 .body(boleto)
                 .asString().getBody();
-        System.out.println("RETORNO: " + jsonRetorno);
+//        System.out.println("RETORNO: " + jsonRetorno);
+        ConsultaBoletoReturn retorno = new Gson().fromJson(jsonRetorno, ConsultaBoletoReturn.class);
+        return retorno;
+    }
+
+    public ConsultaBoletoReturn cancelPaymentBill(DataSend boleto) {
+        System.out.println(new Gson().toJson(boleto));
+        String jsonRetorno = Unirest.post(Constantes.apiURL + "cancelPaymentBill")
+                .body(boleto)
+                .asString().getBody();
+        System.out.println("///////////////////////////////////////////////////");
+        System.out.println(jsonRetorno);
+        System.out.println("///////////////////////////////////////////////////");
         ConsultaBoletoReturn retorno = new Gson().fromJson(jsonRetorno, ConsultaBoletoReturn.class);
         return retorno;
     }

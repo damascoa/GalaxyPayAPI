@@ -13,8 +13,13 @@ import com.galaxypayapi.app.Constantes;
  */
 public class Auth {
 
-    private String galaxId = Constantes.galaxId;
-    private String galaxHash = Constantes.galaxHash;
+    private String galaxId;
+    private String galaxHash;
+
+    public Auth(String galaxId, String galaxHash) {
+        this.galaxId = galaxId;
+        this.galaxHash = galaxHash;
+    }
 
     public String getGalaxId() {
         return galaxId;

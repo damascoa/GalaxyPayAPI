@@ -21,22 +21,31 @@ import kong.unirest.Unirest;
 public class GalaxyPay {
 
     private BoletoService boletoService = new BoletoService();
+    private Auth auth;
 
-    public GalaxyPay() {
+    public GalaxyPay(Auth auth) {
+        auth = auth;
     }
 
+    //CRIAR BOLETO
     public BoletoReturn createPaymentBillBoletoAndCustomer(Boleto boleto) {
-        BoletoReturn bol = boletoService.createPaymentBillBoletoAndCustomer(new DataSend(new Auth(), boleto));
+        BoletoReturn bol = boletoService.createPaymentBillBoletoAndCustomer(new DataSend(auth, boleto));
         return bol;
     }
 
+    //PEGAR DADOS DO BOLETO
     public ConsultaBoletoReturn getPaymentBillInfo(String internalID) {
-        ConsultaBoletoReturn ret = boletoService.getPaymentBillInfo(new DataSend(new Auth(), new ConsultaBoleto(internalID, "internalID")));
+        ConsultaBoletoReturn ret = boletoService.getPaymentBillInfo(new DataSend(auth, new ConsultaBoleto(internalID, "integrationId")));
         return ret;
     }
 
     public ConsultaBoletoReturn getPaymentBillsByCustomer(String cnpjcpf) {
-        ConsultaBoletoReturn ret = boletoService.getPaymentBillsByCustomer(new DataSend(new Auth(), new ConsultaBoleto(cnpjcpf, "document")));
+        ConsultaBoletoReturn ret = boletoService.getPaymentBillsByCustomer(new DataSend(auth, new ConsultaBoleto(cnpjcpf, "document")));
+        return ret;
+    }
+
+    public ConsultaBoletoReturn cancelPaymentBill(String paymentBillIntegrationId) {
+        ConsultaBoletoReturn ret = boletoService.cancelPaymentBill(new DataSend(auth, new ConsultaBoleto(paymentBillIntegrationId, "paymentBillIntegrationId")));
         return ret;
     }
 }

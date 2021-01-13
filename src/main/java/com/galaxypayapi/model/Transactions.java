@@ -3,13 +3,13 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package com.galaxypayapi.model.returns;
+package com.galaxypayapi.model;
 
 /**
  *
  * @author Renato
  */
-public class Transaction {
+public class Transactions {
 
     private String internalId;
     private String integrationId;
@@ -28,14 +28,11 @@ public class Transaction {
     private String lastUpdateDate;
     private String status;
     private String statusDescription;
-    private Boolean isBoleto;
+    private String isBoleto;
     private String boleto;
     private String boletoBankLine;
     private String boletoBankNumber;
     private String boletoEmissionDate;
-
-    public Transaction() {
-    }
 
     public String getInternalId() {
         return internalId;
@@ -69,6 +66,14 @@ public class Transaction {
         this.installmentNumber = installmentNumber;
     }
 
+    public String getTid() {
+        return tid;
+    }
+
+    public void setTid(String tid) {
+        this.tid = tid;
+    }
+
     public String getAdditionalInfo() {
         return additionalInfo;
     }
@@ -91,6 +96,22 @@ public class Transaction {
 
     public void setCustomerIntegrationId(String customerIntegrationId) {
         this.customerIntegrationId = customerIntegrationId;
+    }
+
+    public String getCustomerEmail() {
+        return customerEmail;
+    }
+
+    public void setCustomerEmail(String customerEmail) {
+        this.customerEmail = customerEmail;
+    }
+
+    public String getLink() {
+        return link;
+    }
+
+    public void setLink(String link) {
+        this.link = link;
     }
 
     public String getPaymentBillInternalId() {
@@ -149,11 +170,11 @@ public class Transaction {
         this.statusDescription = statusDescription;
     }
 
-    public Boolean getIsBoleto() {
+    public String getIsBoleto() {
         return isBoleto;
     }
 
-    public void setIsBoleto(Boolean isBoleto) {
+    public void setIsBoleto(String isBoleto) {
         this.isBoleto = isBoleto;
     }
 
@@ -187,30 +208,6 @@ public class Transaction {
 
     public void setBoletoEmissionDate(String boletoEmissionDate) {
         this.boletoEmissionDate = boletoEmissionDate;
-    }
-
-    public String getTid() {
-        return tid;
-    }
-
-    public void setTid(String tid) {
-        this.tid = tid;
-    }
-
-    public String getCustomerEmail() {
-        return customerEmail;
-    }
-
-    public void setCustomerEmail(String customerEmail) {
-        this.customerEmail = customerEmail;
-    }
-
-    public String getLink() {
-        return link;
-    }
-
-    public void setLink(String link) {
-        this.link = link;
     }
 
 }
