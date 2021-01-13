@@ -1,0 +1,42 @@
+/*
+ * To change this license header, choose License Headers in Project Properties.
+ * To change this template file, choose Tools | Templates
+ * and open the template in the editor.
+ */
+package com.galaxypayapi.app;
+
+import com.galaxypayapi.model.Auth;
+import com.galaxypayapi.model.Boleto;
+import com.galaxypayapi.model.ConsultaBoleto;
+import com.galaxypayapi.model.DataSend;
+import com.galaxypayapi.model.returns.BoletoReturn;
+import com.galaxypayapi.model.returns.ConsultaBoletoReturn;
+import com.galaxypayapi.services.BoletoService;
+import kong.unirest.Unirest;
+
+/**
+ *
+ * @author Renato
+ */
+public class GalaxyPay {
+
+    private BoletoService boletoService = new BoletoService();
+
+    public GalaxyPay() {
+    }
+
+    public BoletoReturn createPaymentBillBoletoAndCustomer(Boleto boleto) {
+        BoletoReturn bol = boletoService.createPaymentBillBoletoAndCustomer(new DataSend(new Auth(), boleto));
+        return bol;
+    }
+
+    public ConsultaBoletoReturn getPaymentBillInfo(String internalID) {
+        ConsultaBoletoReturn ret = boletoService.getPaymentBillInfo(new DataSend(new Auth(), new ConsultaBoleto(internalID, "internalID")));
+        return ret;
+    }
+
+    public ConsultaBoletoReturn getPaymentBillsByCustomer(String cnpjcpf) {
+        ConsultaBoletoReturn ret = boletoService.getPaymentBillsByCustomer(new DataSend(new Auth(), new ConsultaBoleto(cnpjcpf, "document")));
+        return ret;
+    }
+}
